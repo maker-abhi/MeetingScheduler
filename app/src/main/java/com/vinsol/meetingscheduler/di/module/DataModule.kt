@@ -16,7 +16,7 @@ class DataModule {
     @Singleton
     fun provideApiService(): ApiService {
         return Retrofit.Builder()
-                .baseUrl("http://fathomless-shelf-5846.herokuapp.com/")
+                .baseUrl("https://fathomless-shelf-5846.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

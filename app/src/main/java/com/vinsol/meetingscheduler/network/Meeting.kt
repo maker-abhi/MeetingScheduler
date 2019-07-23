@@ -2,7 +2,7 @@ package com.vinsol.meetingscheduler.network
 
 import com.google.gson.annotations.SerializedName
 
-class MeetingResponse(
+class Meeting(
         @SerializedName("start_time")
         val startTime: String,
         @SerializedName("end_time")

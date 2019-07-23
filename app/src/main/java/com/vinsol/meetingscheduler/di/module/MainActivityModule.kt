@@ -9,6 +9,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 interface MainActivityModule {
 
+    @ContributesAndroidInjector
     @FragmentScope
     fun contributeMeetingListFragment(): MeetingListFragment
 }
