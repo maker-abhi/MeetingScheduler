@@ -1,4 +1,4 @@
-package com.vinsol.meetingscheduler
+package com.vinsol.meetingscheduler.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

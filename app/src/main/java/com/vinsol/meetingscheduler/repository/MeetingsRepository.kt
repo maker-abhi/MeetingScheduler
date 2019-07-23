@@ -1,4 +1,4 @@
-package com.vinsol.meetingscheduler
+package com.vinsol.meetingscheduler.repository
 
 import com.vinsol.meetingscheduler.network.ApiService
 import com.vinsol.meetingscheduler.network.Meeting

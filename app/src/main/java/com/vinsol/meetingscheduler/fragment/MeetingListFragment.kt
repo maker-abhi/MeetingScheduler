@@ -4,12 +4,13 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vinsol.meetingscheduler.MeetingAdapter
-import com.vinsol.meetingscheduler.MeetingsViewModel
+import com.vinsol.meetingscheduler.viewmodel.MeetingsViewModel
 import com.vinsol.meetingscheduler.R
 import com.vinsol.meetingscheduler.di.ViewModelFactory
 import com.vinsol.meetingscheduler.extensions.formatDate
@@ -34,7 +35,7 @@ class MeetingListFragment : BaseFragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MeetingsViewModel::class.java)
+        viewModel = ViewModelProviders.of(context as AppCompatActivity, viewModelFactory).get(MeetingsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -64,7 +65,11 @@ class MeetingListFragment : BaseFragment() {
             viewModel.loadMeetings()
         }
         btn_schedule_meeting.setOnClickListener {
-            // todo: Launch schedule meeting screen
+            val fragment = ScheduleMeetingFragment.newInstance()
+            fragmentManager?.beginTransaction()
+                ?.replace(R.id.fragment_container, fragment, null)
+                ?.addToBackStack("ScheduleMeeting")
+                ?.commit()
         }
 
         viewModel.meetingsLiveData.observe(this, Observer { meetings ->

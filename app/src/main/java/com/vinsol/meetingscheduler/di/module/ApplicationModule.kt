@@ -1,7 +1,7 @@
 package com.vinsol.meetingscheduler.di.module
 
 import com.google.gson.Gson
-import com.vinsol.meetingscheduler.MeetingsRepository
+import com.vinsol.meetingscheduler.repository.MeetingsRepository
 import com.vinsol.meetingscheduler.network.ApiService
 import com.vinsol.meetingscheduler.repository.IMeetingsRepository
 
