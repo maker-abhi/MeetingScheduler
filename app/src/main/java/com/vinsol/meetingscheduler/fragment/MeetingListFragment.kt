@@ -14,6 +14,7 @@ import com.vinsol.meetingscheduler.R
 import com.vinsol.meetingscheduler.di.ViewModelFactory
 import com.vinsol.meetingscheduler.extensions.formatDate
 import kotlinx.android.synthetic.main.fragment_meeting_list.*
+import java.util.*
 import javax.inject.Inject
 
 
@@ -52,11 +53,24 @@ class MeetingListFragment : BaseFragment() {
         adapter = MeetingAdapter()
         rv_meetings.adapter = adapter
         rv_meetings.layoutManager = LinearLayoutManager(context)
-
-        tv_schedule_date.text = viewModel.calendar.time.formatDate()
+        tv_previous.setOnClickListener {
+            progress_bar.visibility = View.VISIBLE
+            viewModel.calendar.add(Calendar.DAY_OF_YEAR, -1)
+            viewModel.loadMeetings()
+        }
+        tv_next.setOnClickListener {
+            progress_bar.visibility = View.VISIBLE
+            viewModel.calendar.add(Calendar.DAY_OF_YEAR, 1)
+            viewModel.loadMeetings()
+        }
+        btn_schedule_meeting.setOnClickListener {
+            // todo: Launch schedule meeting screen
+        }
 
         viewModel.meetingsLiveData.observe(this, Observer { meetings ->
             meetings?.let { adapter.meetings = it }
+            tv_schedule_date.text = viewModel.calendar.time.formatDate()
+            progress_bar.visibility = View.GONE
         })
     }
 }

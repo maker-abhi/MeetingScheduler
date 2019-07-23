@@ -4,5 +4,6 @@
     <string name="action_next"><![CDATA[Next >]]></string>
 
     <string name="start_end_time">%1s - %2s</string>
+    <string name="schedule_company_meeting">Schedule company meeting</string>
 
 </resources>
