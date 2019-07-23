@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Meeting Scheduler</string>
+    <string name="action_prev"><![CDATA[< Prev]]></string>
+    <string name="action_next"><![CDATA[Next >]]></string>
 </resources>
