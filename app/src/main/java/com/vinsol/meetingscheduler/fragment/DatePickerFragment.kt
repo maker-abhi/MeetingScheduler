@@ -1,27 +1,29 @@
 package com.vinsol.meetingscheduler.fragment
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.widget.DatePicker
 import android.widget.TimePicker
 import java.util.*
 
-class DatePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    var timeSetListener: TimePickerDialog.OnTimeSetListener? = null
+    var dateSetListener: DatePickerDialog.OnDateSetListener? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the current time as the default values for the picker
+        // Use the current date as the default date in the picker
         val c = Calendar.getInstance()
-        val hour = c.get(Calendar.HOUR_OF_DAY)
-        val minute = c.get(Calendar.MINUTE)
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
 
-        // Create a new instance of TimePickerDialog and return it
-        return TimePickerDialog(activity, this, hour, minute, true)
+        return DatePickerDialog(activity, this, year, month, day)
     }
 
-    override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        timeSetListener?.onTimeSet(view, hourOfDay, minute)
+    override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+        dateSetListener?.onDateSet(view, year, month, day)
     }
 }
