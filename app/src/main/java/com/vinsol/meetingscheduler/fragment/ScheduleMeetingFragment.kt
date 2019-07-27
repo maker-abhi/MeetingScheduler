@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import com.vinsol.meetingscheduler.R
 import com.vinsol.meetingscheduler.di.ViewModelFactory
+import com.vinsol.meetingscheduler.extensions.compareOnlyTimeTo
 import com.vinsol.meetingscheduler.extensions.formatDate
 import com.vinsol.meetingscheduler.model.Status
 import com.vinsol.meetingscheduler.viewmodel.ScheduleMeetingViewModel
@@ -68,6 +69,16 @@ class ScheduleMeetingFragment : BaseFragment(), DatePickerDialog.OnDateSetListen
         tv_start_time.setOnClickListener {
             val newFragment = TimePickerFragment.newInstance(viewModel.startTime)
             newFragment.timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                calendar.set(Calendar.MINUTE, minute)
+                if (calendar.compareOnlyTimeTo(viewModel.endTime) > 0) {
+                    AlertDialog.Builder(context)
+                        .setMessage("Start time can't be after end time.")
+                        .setPositiveButton("Okay") { dialog, _ -> dialog.dismiss() }
+                        .show()
+                    return@OnTimeSetListener
+                }
                 tv_start_time.text = String.format(getString(R.string.time_format), hourOfDay, minute)
                 viewModel.startTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 viewModel.startTime.set(Calendar.MINUTE, minute)
@@ -77,6 +88,17 @@ class ScheduleMeetingFragment : BaseFragment(), DatePickerDialog.OnDateSetListen
         tv_end_time.setOnClickListener {
             val newFragment = TimePickerFragment.newInstance(viewModel.endTime)
             newFragment.timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                calendar.set(Calendar.MINUTE, minute)
+                if (calendar.compareOnlyTimeTo(viewModel.startTime) < 0) {
+                    AlertDialog.Builder(context)
+                        .setMessage("End time can't be before start time.")
+                        .setPositiveButton("Okay") { dialog, _ -> dialog.dismiss() }
+                        .show()
+                    return@OnTimeSetListener
+                }
+
                 tv_end_time.text = String.format(getString(R.string.time_format), hourOfDay, minute)
                 viewModel.endTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 viewModel.endTime.set(Calendar.MINUTE, minute)
