@@ -21,3 +21,10 @@ fun Date.formatDate(format: String? = "dd/MM/yyyy", locale: Locale = Locale.getD
     val df = SimpleDateFormat(format, locale)
     return df.format(this)
 }
+
+fun Calendar.compareOnlyTimeTo(other: Calendar): Int {
+    val hourDiff = this.get(Calendar.HOUR_OF_DAY) - other.get(Calendar.HOUR_OF_DAY)
+    if (hourDiff != 0) return hourDiff
+
+    return this.get(Calendar.MINUTE) - other.get(Calendar.MINUTE)
+}

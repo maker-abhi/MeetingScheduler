@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vinsol.meetingscheduler.MeetingAdapter
+import com.vinsol.meetingscheduler.adapter.MeetingAdapter
 import com.vinsol.meetingscheduler.viewmodel.MeetingsViewModel
 import com.vinsol.meetingscheduler.R
 import com.vinsol.meetingscheduler.di.ViewModelFactory

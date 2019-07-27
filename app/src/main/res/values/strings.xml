@@ -13,4 +13,9 @@
     <string name="description">Description</string>
     <string name="time_format">%02d:%02d</string>
 
+    <string name="slot_available">Selected meeting time slot is available!</string>
+    <string name="slot_unavailable">This is already a meeting scheduled for the
+        selected date-time slot.\n\nPlease select a different time slot.</string>
+
+
 </resources>

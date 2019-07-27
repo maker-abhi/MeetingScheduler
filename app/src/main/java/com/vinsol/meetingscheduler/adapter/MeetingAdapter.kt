@@ -1,10 +1,11 @@
-package com.vinsol.meetingscheduler
+package com.vinsol.meetingscheduler.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vinsol.meetingscheduler.R
 import com.vinsol.meetingscheduler.databinding.ItemMeetingBinding
 import com.vinsol.meetingscheduler.extensions.formatDate
 import com.vinsol.meetingscheduler.extensions.parseDate

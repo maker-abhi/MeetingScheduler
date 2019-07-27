@@ -9,11 +9,22 @@ import java.util.*
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
+    companion object {
+        fun newInstance(defaultTime: Calendar = Calendar.getInstance()): TimePickerFragment {
+            val args = Bundle()
+            args.putSerializable("defaultTime", defaultTime)
+            val fragment = TimePickerFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     var timeSetListener: TimePickerDialog.OnTimeSetListener? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the current time as the default values for the picker
-        val c = Calendar.getInstance()
+        // Use the default date in the picker
+        val c = arguments!!.getSerializable("defaultTime") as Calendar
+
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
 
