@@ -16,6 +16,7 @@ import com.vinsol.meetingscheduler.extensions.formatDate
 import kotlinx.android.synthetic.main.fragment_meeting_list.*
 import java.util.*
 import javax.inject.Inject
+import android.content.res.Configuration
 
 class MeetingListFragment : BaseFragment() {
     @Inject
@@ -72,7 +73,14 @@ class MeetingListFragment : BaseFragment() {
 
         viewModel.meetingsLiveData.observe(this, Observer { meetings ->
             meetings?.let { adapter.meetings = it }
-            tv_schedule_date.text = viewModel.calendar.time.formatDate()
+            val orientation = resources.configuration.orientation
+            val titleFormat = if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                "EEEE, dd-MM-yyyy"
+            } else {
+                "dd-MM-yyyy"
+            }
+
+            tv_schedule_date.text = viewModel.calendar.time.formatDate(titleFormat)
             progress_bar.visibility = View.GONE
         })
     }

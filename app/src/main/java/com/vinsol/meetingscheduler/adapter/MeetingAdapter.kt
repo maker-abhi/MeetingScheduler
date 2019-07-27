@@ -36,7 +36,9 @@ class MeetingAdapter
         val end = meeting.endTime.parseDate("HH:mm")?.formatDate("h:mm a")
 
         holder.binding.meeting = meeting
-        holder.binding.tvDateTime.text = holder.binding.tvDateTime.resources.getString(R.string.start_end_time, start, end)
+        holder.binding.tvStartTime.text = start
+        holder.binding.tvEndTime.text = end
+        holder.binding.tvAttendees?.text = meeting.participants.joinToString()
     }
 
     class MeetingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

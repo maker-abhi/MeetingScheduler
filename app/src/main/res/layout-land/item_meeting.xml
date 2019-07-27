@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="meeting"
             type="com.vinsol.meetingscheduler.network.Meeting" />
@@ -13,28 +12,33 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp">
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp">
 
         <TextView
             android:id="@+id/tv_start_time"
             style="@style/TextGray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:paddingTop="4dp"
             android:paddingBottom="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="10:00AM" />
+            tools:text="9:00AM" />
 
         <View
             android:id="@+id/horizontal_divider"
-            android:layout_width="8dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="4dp"
             android:background="@color/colorGray"
-            app:layout_constraintBottom_toBottomOf="@id/tv_start_time"
-            app:layout_constraintStart_toEndOf="@id/tv_start_time"
-            app:layout_constraintTop_toTopOf="@id/tv_start_time" />
+            app:layout_constraintEnd_toEndOf="@id/tv_start_time"
+            app:layout_constraintStart_toStartOf="@id/tv_start_time"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_time" />
 
         <TextView
             android:id="@+id/tv_end_time"
@@ -42,34 +46,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            app:layout_constraintStart_toEndOf="@id/horizontal_divider"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_divider"
             tools:text="11:00AM" />
 
         <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:id="@+id/vertical_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:background="@color/lightGray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_start_time" />
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorGray"
+            app:layout_constraintBottom_toBottomOf="@id/item_divider"
+            app:layout_constraintStart_toEndOf="@id/tv_end_time"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_description"
             style="@style/TextRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintVertical_bias="0"
             android:text="@{meeting.description}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vertical_divider"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Lorem ipsum is simply dummy text of the printing" />
+
+        <TextView
+            android:id="@+id/tv_attendees"
+            style="@style/TextGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vertical_divider"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            tools:text="Attendee 1, Attendee 2" />
 
         <View
             android:id="@+id/item_divider"
@@ -79,7 +98,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_description" />
+            app:layout_constraintTop_toBottomOf="@id/tv_end_time" />
 
     </android.support.constraint.ConstraintLayout>
 
