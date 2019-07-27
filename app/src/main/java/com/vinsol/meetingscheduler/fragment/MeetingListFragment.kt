@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import com.vinsol.meetingscheduler.extensions.formatDate
 import kotlinx.android.synthetic.main.fragment_meeting_list.*
 import java.util.*
 import javax.inject.Inject
-
 
 class MeetingListFragment : BaseFragment() {
     @Inject
@@ -35,7 +33,7 @@ class MeetingListFragment : BaseFragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        viewModel = ViewModelProviders.of(context as AppCompatActivity, viewModelFactory).get(MeetingsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MeetingsViewModel::class.java)
     }
 
     override fun onCreateView(
