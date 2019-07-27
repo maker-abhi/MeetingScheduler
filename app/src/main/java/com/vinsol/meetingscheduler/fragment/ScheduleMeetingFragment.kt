@@ -61,7 +61,7 @@ class ScheduleMeetingFragment : BaseFragment(), DatePickerDialog.OnDateSetListen
             fragmentManager?.popBackStackImmediate()
         }
         tv_meeting_date.setOnClickListener {
-            val newFragment = DatePickerFragment.newInstance(viewModel.calendar)
+            val newFragment = DatePickerFragment.newInstance(viewModel.calendar, minDate = Calendar.getInstance())
             newFragment.dateSetListener = this
             newFragment.show(fragmentManager, "datePicker")
         }
