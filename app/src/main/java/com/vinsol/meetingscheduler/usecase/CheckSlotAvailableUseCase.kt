@@ -28,6 +28,11 @@ class CheckSlotAvailableUseCase @Inject constructor() {
             ) {
                 return false
             }
+            if (args.startTime.compareOnlyTimeTo(startCalendar) <= 0 &&
+                args.endTime.compareOnlyTimeTo(endCalendar) >= 0
+            ) {
+                return false
+            }
         }
         return true
     }

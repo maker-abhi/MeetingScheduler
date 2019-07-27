@@ -56,7 +56,7 @@ class ScheduleMeetingFragment : BaseFragment(), DatePickerDialog.OnDateSetListen
     private fun initViews() {
         tv_meeting_date.text = viewModel.calendar.time.formatDate()
         tv_start_time.text = viewModel.startTime.time.formatDate("HH:mm")
-        tv_end_time.text = viewModel.startTime.time.formatDate("HH:mm")
+        tv_end_time.text = viewModel.endTime.time.formatDate("HH:mm")
 
         tv_back.setOnClickListener {
             fragmentManager?.popBackStackImmediate()

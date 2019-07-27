@@ -91,4 +91,18 @@ class CheckSlotAvailableUseCaseTests {
         val result = checkSlotAvailableUseCase.run(args)
         Assert.assertFalse(result)
     }
+
+    @Test
+    fun checkSlotUnavailable_aScheduledMeetingFallsWithinStartAndEndTime() {
+        val startTime = Calendar.getInstance()
+        startTime.set(Calendar.HOUR_OF_DAY, 11)
+        startTime.set(Calendar.MINUTE, 0)
+        val endTime = Calendar.getInstance()
+        endTime.set(Calendar.HOUR_OF_DAY, 12)
+        endTime.set(Calendar.MINUTE, 30)
+
+        val args = CheckSlotAvailableUseCase.Arguments(scheduledMeetings, startTime, endTime)
+        val result = checkSlotAvailableUseCase.run(args)
+        Assert.assertFalse(result)
+    }
 }

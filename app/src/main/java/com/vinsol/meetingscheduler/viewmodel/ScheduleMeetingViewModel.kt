@@ -21,8 +21,8 @@ class ScheduleMeetingViewModel @Inject constructor(
 
     val calendar: Calendar = Calendar.getInstance()
 
-    var startTime: Calendar = Calendar.getInstance()
-    var endTime: Calendar = Calendar.getInstance()
+    val startTime: Calendar = Calendar.getInstance()
+    val endTime: Calendar = Calendar.getInstance()
 
     val slotAvailabilityLiveData = MutableLiveData<Resource<Boolean>>()
 
